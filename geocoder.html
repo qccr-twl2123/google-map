@@ -60,7 +60,7 @@ function getCoordinate1(address) {
 		if(status == google.maps.GeocoderStatus.OK){
                 if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
                     map.setCenter(results[0].geometry.location);
-     				 //alert(results[0].geometry.location.lat()); //»ñÈ¡latitude, longitude
+     				 //alert(results[0].geometry.location.lat()); //è·å–latitude, longitude
  					var marker = new google.maps.Marker({map:map, position:results[0].geometry.location});
                 }
                 else{
@@ -86,14 +86,14 @@ function getCoordinate1(address) {
 <input  type="hidden" name="latitude" id="latitude" value="-43.890542"/>
 <input  type="hidden" name="longitude" id="longitude" value="121.274856, 4"/>
 <br/><br/><br/><br/>
-<p>Ïà¹ØÎÄÕÂÍÆ¼ö£º</p>
+<p>ç›¸å…³æ–‡ç« æ¨èï¼š</p>
 
-<p>¸ù¾İ¾­Î³¶È»ñÈ¡µØÖ·ĞÅÏ¢£º</p>
+<p>æ ¹æ®ç»çº¬åº¦è·å–åœ°å€ä¿¡æ¯ï¼š</p>
 <p><a href="http://www.jq22.com/jquery-info5615">http://www.jq22.com/jquery-info5615</a> </p>
-<p>»ùÓÚ°Ù¶ÈµØÍ¼×óµÄµØÇøµØÍ¼</p>
+<p>åŸºäºç™¾åº¦åœ°å›¾å·¦çš„åœ°åŒºåœ°å›¾</p>
 <a href="http://www.jq22.com/yanshi5915"> http://www.jq22.com/yanshi5915</a>
 
-<br/>
+
 </body>
 </html>
 
