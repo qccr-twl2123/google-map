@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>google map polyline</title>
+<script type="text/javascript" src="js/jquery/jquery-core-and-ui.js"></script>
+<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN"></script>
+<script type="text/javascript" src="js/gmap3.min.5.js"></script>
+
+<script type="text/javascript">
+var map = null;
+
+function initMap(){
+    var lat = "-33.9";
+    var lng = "151.2";
+
+    var myLatlng = new google.maps.LatLng(lat,lng);
+    var myOptions = {
+		zoom: 10,
+		center: myLatlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		scaleControl : false,
+		mapTypeControl : false,
+		zoomControlOptions: {
+		style: google.maps.ZoomControlStyle.BIG,
+		position: google.maps.ControlPosition.LEFT_TOP
+    }
+    }
+	
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	
+   
+}
+
+
+function getCoordinate(address) {
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode( {  
+		'address' : address  
+	}, function(results, status) {  
+		if (status == google.maps.GeocoderStatus.OK) {  
+			var myLatLng = results[0].geometry.location;
+			document.getElementById("latitude").value = myLatLng.lat().toFixed(6);
+			document.getElementById("longitude").value = myLatLng.lng().toFixed(6);
+			loadMap(myLatLng.lat(), myLatLng.lng(), address);  
+ 
+		} else {  
+			alert(address + " not found");  
+		}  
+	});  
+
+}
+
+
+function getCoordinate1(address) {
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode( {  
+		'address' : address  
+	}, function(results, status) {  
+		if(status == google.maps.GeocoderStatus.OK){
+                if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    map.setCenter(results[0].geometry.location);
+     				 //alert(results[0].geometry.location.lat()); //获取latitude, longitude
+ 					var marker = new google.maps.Marker({map:map, position:results[0].geometry.location});
+                }
+                else{
+                    alert("hop")
+                }
+            }
+	});  
+
+}
+
+
+
+</script>
+
+</head>
+
+<body onload="initMap()">
+   <div id="map_canvas" style="margin:0px; padding:0px; width:1000px; height:400px;" >
+
+</div>
+<input type="button" name="btn" value="geocoder=>new york"  onclick="getCoordinate1('13330 39th Ave Flushing, NY 11354')"/>
+<input type="button" name="btn" value="location"  onclick="getCoordinate1('hz')"/>
+<input  type="hidden" name="latitude" id="latitude" value="-43.890542"/>
+<input  type="hidden" name="longitude" id="longitude" value="121.274856, 4"/>
+<br/><br/><br/><br/>
+<p>相关文章推荐：</p>
+
+<p>根据经纬度获取地址信息：</p>
+<p><a href="http://www.jq22.com/jquery-info5615">http://www.jq22.com/jquery-info5615</a> </p>
+<p>基于百度地图左的地区地图</p>
+<a href="http://www.jq22.com/yanshi5915"> http://www.jq22.com/yanshi5915</a>
+
+
+</body>
+</html>
+
+
+
