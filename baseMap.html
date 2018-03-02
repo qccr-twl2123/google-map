@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>google map polyline</title>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=Z5WiSpW4tf5T4XeLQVGxD3sG"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <!--<script src="map.jquery.min.js"></script>-->
+</head>
+
+<body>
+<div class="bMap"></div>
+
+<script type="text/javascript">
+    $(function(){
+        $(".bMap").bMap({
+            address:"北京市",  //默认地址，如果为空则通过解析默认坐标获取
+            location:[116.331398,39.897445],  //默认坐标，如果为空则通过解析默认地址获取
+            name:"map", //提交表单的NAME,默认为map
+            callback:function(address,point) //回调函数，返回地址数组与坐标
+            {
+                console.log(address);
+                console.log(point)
+            }
+        });
+    })
+</script>
+</body>
+</html>
+
+
+
