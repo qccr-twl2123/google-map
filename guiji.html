@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>google map polyline</title>
+    <script type="text/javascript" src="js/jquery/jquery-core-and-ui.js"></script>
+    <script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN"></script>
+    <script type="text/javascript" src="js/gmap3.min.5.js"></script>
+    <script type="text/javascript">
+        function initialize() {
+            var myOptions = {
+                zoom: 12,
+                center: new google.maps.LatLng(39.964556,116.274834),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            // 这里填上轨迹的经纬坐标，
+            // 坐标做好是在路口的，不然画线不在路上。
+            var trackPoints = [
+                new google.maps.LatLng(39.964556,116.274834),
+                new google.maps.LatLng(39.956662,116.275735),
+                new google.maps.LatLng(39.957221,116.284447),
+                new google.maps.LatLng(39.95834,116.29406),
+                new google.maps.LatLng(39.959326,116.29951),
+                new google.maps.LatLng(39.960083,116.303029),
+                new google.maps.LatLng(39.96209,116.307793)
+            ];
+
+            var trackPath = new google.maps.Polyline({
+                path: trackPoints,
+                strokeColor: "#FF0000", // 线条颜色
+                strokeOpacity: 1.0, // 线条透明度
+                strokeWeight: 8 // 线条粗细
+            });
+
+            trackPath.setMap(map);
+        }
+    </script>
+
+</head>
+
+<body onload="initialize()">
+<form id="form1" runat="server">
+    <div id="map_canvas" style="width:1000px; height:700px;"></div>
+</form>
+</body>
+</html>
+
+
+
