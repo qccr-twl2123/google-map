@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>google map polyline</title>
+    <!--<script type="text/javascript" src="js/jquery/jquery-core-and-ui.js"></script>-->
+    <script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN"></script>
+    <script type="text/javascript" src="js/gmap3.min.5.js"></script>
+    <script type="text/javascript">
+        function initialize() {
+            var map;
+            var poly;
+            var path;
+
+            // Put all locations into array
+            var locations = [
+                [39.927205, 116.140581],
+                [39.937758, 116.140581]
+            ];
+            for (i = 0; i < locations.length; i++) {
+                if(i==0)
+                {
+                    // Initialise the map
+                    var map_options = {
+                        center: new google.maps.LatLng(locations[0][0], locations[0][1]),
+                        //position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                        zoom: 10,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    map = new google.maps.Map(document.getElementById('map'), map_options);
+                    poly = new google.maps.Polyline({
+                        strokeColor: '#0404B4',
+                        strokeOpacity: 2.0,
+                        strokeWeight:2,
+                        map:map
+                    });
+                    path = poly.getPath();
+                }
+
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                    //center:location,
+                    map: map,
+                    // icon:'jeep.png'
+                    //animation:google.maps.Animation.BOUNCE
+                });
+
+                path.push(new google.maps.LatLng(locations[i][0], locations[i][1]));
+            }
+
+        }
+    </script>
+
+</head>
+
+<body onload="initialize()">
+<div id="map" style="width: 700px; height: 500px;"></div>
+</body>
+</html>
+
+
+
